@@ -1,0 +1,15 @@
+[package]
+authors = ["Sergei Silnov <po@kumekay.com>"]
+edition = "2018"
+name = "pyaskolono"
+version = "0.0.1"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+name = "askalono"
+
+[dependencies]
+askalono = {version = "*", default-features = false}
+pyo3 = {version = "0.13.2", features = ["extension-module"]}
