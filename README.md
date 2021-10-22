@@ -1,6 +1,6 @@
 # pyaskalono
 
-Python bindings for askalono - rust library to detect license texts
+Python bindings for [askalono](https://github.com/jpeddicord/askalono) - rust library to detect license texts
 
 ## Installation
 
@@ -30,3 +30,7 @@ detected_license = identify(LICENSE)
 detected_license.name # 'MIT'
 detected_license.score # 0.9878048896789551
 ```
+
+## Publishing
+
+To upload new package run `maturin publish` from pipenv environment
