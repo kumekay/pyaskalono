@@ -1,8 +1,8 @@
 [package]
 authors = ["Sergei Silnov <po@kumekay.com>"]
 edition = "2018"
-name = "pyaskolono"
-version = "0.0.2"
+name = "pyaskalono"
+version = "0.1.1"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
