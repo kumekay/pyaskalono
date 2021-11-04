@@ -1,0 +1,21 @@
+name: Deploy to PyPI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/push_pypi
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: konstin2/maturin
+    steps:
+    - uses: actions/checkout@v1
+    - run: |
+        cd ${GITHUB_WORKSPACE}
+        rustup default stable
+        maturin publish -u ${{ secrets.PYPI_USER }} -p ${{ secrets.PYPI_PASSWORD }} -r ${{ secrets.PYPI_REPO }}
+
+
