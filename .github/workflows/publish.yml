@@ -3,17 +3,22 @@ name: Deploy to PyPI
 on:
   push:
     branches:
-      - main
       - feature/push_pypi
+    tags:
+      - v*
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: konstin2/maturin
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          cd ${GITHUB_WORKSPACE}
-          rustup default stable
-          maturin publish -u ${{ secrets.PYPI_USER }} -p ${{ secrets.PYPI_PASSWORD }} -r ${{ secrets.PYPI_REPO }}
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+          architecture: x64
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: PyO3/maturin-action@v1
+        with:
+          target: x86_64
+          command: publish
+          args: -u ${{ secrets.PYPI_USER }} -p ${{ secrets.PYPI_PASSWORD }} -r ${{ secrets.PYPI_REPO }} -i python3.13
