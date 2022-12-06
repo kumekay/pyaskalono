@@ -12,10 +12,8 @@ jobs:
     container:
       image: konstin2/maturin
     steps:
-    - uses: actions/checkout@v1
-    - run: |
-        cd ${GITHUB_WORKSPACE}
-        rustup default stable
-        maturin publish -u ${{ secrets.PYPI_USER }} -p ${{ secrets.PYPI_PASSWORD }} -r ${{ secrets.PYPI_REPO }}
-
-
+      - uses: actions/checkout@v2
+      - run: |
+          cd ${GITHUB_WORKSPACE}
+          rustup default stable
+          maturin publish -u ${{ secrets.PYPI_USER }} -p ${{ secrets.PYPI_PASSWORD }} -r ${{ secrets.PYPI_REPO }}
