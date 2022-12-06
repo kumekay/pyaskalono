@@ -1,2 +1,5 @@
 # rust binaries
 target
+
+# asdf config
+.tool-versions
