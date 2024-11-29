@@ -28,9 +28,9 @@ fn identify(license_text: &str) -> PyResult<License> {
 }
 
 #[pymodule]
-fn askalono(_py: Python, m: &PyModule) -> PyResult<()> {
-    m.add_class::<License>()?;
-    m.add_function(wrap_pyfunction!(identify, m)?)?;
+fn askalono(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_class::<License>()?;
+    module.add_function(wrap_pyfunction!(identify, module)?)?;
 
     Ok(())
 }
