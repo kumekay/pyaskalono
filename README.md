@@ -8,6 +8,20 @@ Python bindings for [askalono](https://github.com/jpeddicord/askalono) - rust li
 pip install pyaskalono
 ```
 
+## Development
+
+To set up the development environment:
+
+```
+uv sync --all-extras
+```
+
+Then run maturin commands with:
+
+```
+uv run maturin develop
+```
+
 ## Use
 
 ```python
@@ -33,4 +47,4 @@ detected_license.score # 0.9878048896789551
 
 ## Publishing
 
-To upload new package run `maturin publish` from pipenv environment
+To upload new package run `uv run maturin publish`

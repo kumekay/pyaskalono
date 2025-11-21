@@ -4,3 +4,4 @@ dist/
 
 # asdf config
 .tool-versions
+.python-version
