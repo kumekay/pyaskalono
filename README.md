@@ -22,6 +22,29 @@ Then run maturin commands with:
 uv run maturin develop
 ```
 
+## Testing
+
+The project includes a comprehensive test suite using pytest. Tests cover:
+- License identification for common licenses (MIT, Apache, GPL, BSD)
+- License class properties and methods
+- Edge cases (empty text, unicode, partial licenses)
+
+To run tests locally:
+
+```bash
+# Install dev dependencies (includes pytest)
+uv sync --all-extras
+
+# Build the library
+uv run maturin develop
+
+# Run tests
+uv run pytest -v
+```
+
+Tests are automatically run on GitHub Actions before building wheels for any platform. All tests must pass before builds proceed.
+
+
 ## Use
 
 ```python

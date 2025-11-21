@@ -8,3 +8,8 @@ dist/
 
 # SPDX license data (used for cache generation)
 license-list-data/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
