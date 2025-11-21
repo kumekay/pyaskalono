@@ -16,6 +16,17 @@ struct License {
     name: String,
 }
 
+#[pymethods]
+impl License {
+    fn __str__(&self) -> String {
+        format!("{} (score: {:.4})", self.name, self.score)
+    }
+
+    fn __repr__(&self) -> String {
+        format!("License(name='{}', score={:.4})", self.name, self.score)
+    }
+}
+
 #[pyfunction]
 fn identify(license_text: &str) -> PyResult<License> {
     let store = load_store();
