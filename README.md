@@ -45,6 +45,41 @@ detected_license.name # 'MIT'
 detected_license.score # 0.9878048896789551
 ```
 
+## Updating the License Cache
+
+The `askalono-cache.bin.zstd` file contains a compressed database of license texts from [SPDX](https://github.com/spdx/license-list-data). To update it with the latest licenses:
+
+### Using the update script (recommended)
+
+```bash
+./update_cache.sh
+```
+
+This script will:
+1. Clone or update the SPDX license data repository
+2. Generate a new cache file using the askalono CLI
+3. Replace the existing `askalono-cache.bin.zstd`
+
+### Manual update
+
+If you prefer to update manually:
+
+```bash
+# Install askalono CLI if not already installed
+cargo install askalono-cli
+
+# Clone SPDX license data
+git clone https://github.com/spdx/license-list-data.git
+
+# Generate the cache file
+askalono cache load-spdx --store license-list-data/json/details 
+
+After updating the cache, rebuild the package:
+
+```bash
+uv run maturin develop
+```
+
 ## Publishing
 
 To upload new package run `uv run maturin publish`

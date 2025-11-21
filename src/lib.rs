@@ -2,7 +2,7 @@ use ::askalono::{Store, TextData};
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 
-static CACHE_DATA: &[u8] = include_bytes!("../embedded-cache.bin.zstd");
+static CACHE_DATA: &[u8] = include_bytes!("../askalono-cache.bin.zstd");
 
 fn load_store() -> Store {
     Store::from_cache(CACHE_DATA).expect("Cannot load built-in store")
