@@ -2,7 +2,7 @@ use ::askalono::{Store, TextData};
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 
-static CACHE_DATA: &[u8] = include_bytes!("../embedded-cache.bin.zstd");
+static CACHE_DATA: &[u8] = include_bytes!("../askalono-cache.bin.zstd");
 
 fn load_store() -> Store {
     Store::from_cache(CACHE_DATA).expect("Cannot load built-in store")
@@ -14,6 +14,17 @@ struct License {
     score: f32,
     #[pyo3(get)]
     name: String,
+}
+
+#[pymethods]
+impl License {
+    fn __str__(&self) -> String {
+        format!("{} (score: {:.4})", self.name, self.score)
+    }
+
+    fn __repr__(&self) -> String {
+        format!("License(name='{}', score={:.4})", self.name, self.score)
+    }
 }
 
 #[pyfunction]

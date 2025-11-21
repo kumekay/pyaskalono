@@ -1,8 +1,8 @@
 [package]
 authors = ["Sergei Silnov <po@kumekay.com>"]
-edition = "2018"
+edition = "2021"
 name = "pyaskalono"
-version = "0.1.3"
+version = "0.2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -12,4 +12,4 @@ name = "askalono"
 
 [dependencies]
 askalono = { version = "0.5.0", default-features = false }
-pyo3 = { version = "0.22.0", features = ["extension-module"] }
+pyo3 = { version = "0.27.1", features = ["extension-module"] }

@@ -8,6 +8,43 @@ Python bindings for [askalono](https://github.com/jpeddicord/askalono) - rust li
 pip install pyaskalono
 ```
 
+## Development
+
+To set up the development environment:
+
+```
+uv sync --all-extras
+```
+
+Then run maturin commands with:
+
+```
+uv run maturin develop
+```
+
+## Testing
+
+The project includes a comprehensive test suite using pytest. Tests cover:
+- License identification for common licenses (MIT, Apache, GPL, BSD)
+- License class properties and methods
+- Edge cases (empty text, unicode, partial licenses)
+
+To run tests locally:
+
+```bash
+# Install dev dependencies (includes pytest)
+uv sync --all-extras
+
+# Build the library
+uv run maturin develop
+
+# Run tests
+uv run pytest -v
+```
+
+Tests are automatically run on GitHub Actions before building wheels for any platform. All tests must pass before builds proceed.
+
+
 ## Use
 
 ```python
@@ -31,6 +68,41 @@ detected_license.name # 'MIT'
 detected_license.score # 0.9878048896789551
 ```
 
+## Updating the License Cache
+
+The `askalono-cache.bin.zstd` file contains a compressed database of license texts from [SPDX](https://github.com/spdx/license-list-data). To update it with the latest licenses:
+
+### Using the update script (recommended)
+
+```bash
+./update_cache.sh
+```
+
+This script will:
+1. Clone or update the SPDX license data repository
+2. Generate a new cache file using the askalono CLI
+3. Replace the existing `askalono-cache.bin.zstd`
+
+### Manual update
+
+If you prefer to update manually:
+
+```bash
+# Install askalono CLI if not already installed
+cargo install askalono-cli
+
+# Clone SPDX license data
+git clone https://github.com/spdx/license-list-data.git
+
+# Generate the cache file
+askalono cache load-spdx --store license-list-data/json/details 
+
+After updating the cache, rebuild the package:
+
+```bash
+uv run maturin develop
+```
+
 ## Publishing
 
-To upload new package run `maturin publish` from pipenv environment
+To upload new package run `uv run maturin publish`
